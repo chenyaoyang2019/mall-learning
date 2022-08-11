@@ -60,7 +60,7 @@ public class EsProduct implements Serializable {
     private Integer sort;
 
     @Field(type = FieldType.Nested)
-    private List<EsProductAttributeValue> attributeValueList;
+    private List<EsProductAttributeValue> attrValueList;
 
     public Long getId() {
         return id;
@@ -198,11 +198,11 @@ public class EsProduct implements Serializable {
         this.sort = sort;
     }
 
-    public List<EsProductAttributeValue> getAttributeValueList() {
-        return attributeValueList;
+    public List<EsProductAttributeValue> getAttrValueList() {
+        return attrValueList;
     }
 
-    public void setAttributeValueList(List<EsProductAttributeValue> attributeValueList) {
-        this.attributeValueList = attributeValueList;
+    public void setAttrValueList(List<EsProductAttributeValue> attrValueList) {
+        this.attrValueList = attrValueList;
     }
 }
