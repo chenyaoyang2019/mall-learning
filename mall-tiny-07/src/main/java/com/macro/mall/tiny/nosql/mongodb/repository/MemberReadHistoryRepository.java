@@ -11,13 +11,12 @@ import java.util.List;
  * @author: cyy
  * @create: 2022-08-11 22:26
  **/
-public interface MemberReadHistoryRepository extends MongoRepository<MemberReadHistory, String> {
+public interface MemberReadHistoryRepository extends MongoRepository<MemberReadHistory, Long> {
 
     /**
      * 根据会员ID时间倒序获取浏览记录
      * @param memberId 会员id
      * @return
      */
-    List<MemberReadHistory> findByMemberIdOOrderByCreateTimeDesc(Long memberId);
-
+    List<MemberReadHistory> findByMemberIdOrderByCreateTimeDesc(Long memberId);
 }

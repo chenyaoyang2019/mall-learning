@@ -44,6 +44,6 @@ public class MemberReadHistoryServiceImpl implements MemberReadHistoryService {
 
     @Override
     public List<MemberReadHistory> list(Long memberId) {
-        return memberReadHistoryRepository.findByMemberIdOOrderByCreateTimeDesc(memberId);
+        return memberReadHistoryRepository.findByMemberIdOrderByCreateTimeDesc(memberId);
     }
 }

@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * @class: MemberRreadHistoryController
+ * @class: MemberReadHistoryController
  * @description: 会员浏览记录管理Controller
  * @author: cyy
  * @create: 2022-08-11 22:48
  **/
-@Api(value = "MemberRreadHistoryController", description = "会员商品浏览记录管理")
+@Api(tags = "MemberReadHistoryController", description = "会员商品浏览记录管理")
 @Controller
 @RequestMapping("/member/readHistory")
-public class MemberRreadHistoryController {
+public class MemberReadHistoryController {
 
     @Autowired
     private MemberReadHistoryService memberReadHistoryService;
 
     @ApiOperation("创建浏览记录")
-    @RequestMapping(value = "create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult create(@RequestBody MemberReadHistory memberReadHistory) {
         int count = memberReadHistoryService.create(memberReadHistory);
