@@ -20,7 +20,7 @@ public class RabbitMqConfig {
     @Bean
     DirectExchange orderDirect() {
         return (DirectExchange) ExchangeBuilder
-                .directExchange(QueueEnum.QUEUE_ORDER_CANCLE.getExchange())
+                .directExchange(QueueEnum.QUEUE_ORDER_CANCEL.getExchange())
                 .durable(true)
                 .build();
     }
@@ -32,7 +32,7 @@ public class RabbitMqConfig {
     @Bean
     DirectExchange orderTtlDirect() {
         return (DirectExchange) ExchangeBuilder
-                .directExchange(QueueEnum.QUEUE_TTL_ORDER_CANCLE.getExchange())
+                .directExchange(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getExchange())
                 .durable(true)
                 .build();
     }
@@ -43,7 +43,7 @@ public class RabbitMqConfig {
      */
     @Bean
     Queue orderQueue() {
-        return new Queue(QueueEnum.QUEUE_ORDER_CANCLE.getName());
+        return new Queue(QueueEnum.QUEUE_ORDER_CANCEL.getName());
     }
 
     /**
@@ -53,9 +53,9 @@ public class RabbitMqConfig {
     @Bean
     Queue orderTtlQueue() {
         return QueueBuilder
-                .durable(QueueEnum.QUEUE_TTL_ORDER_CANCLE.getName())
-                .withArgument("x-dead-letter-exchange", QueueEnum.QUEUE_ORDER_CANCLE.getExchange()) //到期后转发的交换机
-                .withArgument("x-dead-letter-routing-key", QueueEnum.QUEUE_ORDER_CANCLE.getRouteKey()) //到期后转发的路由键
+                .durable(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getName())
+                .withArgument("x-dead-letter-exchange", QueueEnum.QUEUE_ORDER_CANCEL.getExchange()) //到期后转发的交换机
+                .withArgument("x-dead-letter-routing-key", QueueEnum.QUEUE_ORDER_CANCEL.getRouteKey()) //到期后转发的路由键
                 .build();
     }
 
@@ -64,22 +64,22 @@ public class RabbitMqConfig {
      * @return
      */
     @Bean
-    Binding orderBinding(DirectExchange orderExchange, Queue orderQueue) {
+    Binding orderBinding(DirectExchange orderDirect,Queue orderQueue){
         return BindingBuilder
                 .bind(orderQueue)
-                .to(orderExchange)
-                .with(QueueEnum.QUEUE_ORDER_CANCLE.getRouteKey());
+                .to(orderDirect)
+                .with(QueueEnum.QUEUE_ORDER_CANCEL.getRouteKey());
     }
     /**
      * 将订单延迟队列绑定到交换机
      * @return
      */
     @Bean
-    Binding orderTtlBinding(DirectExchange orderTtlExchange, Queue orderTtlQueue) {
+    Binding orderTtlBinding(DirectExchange orderTtlDirect, Queue orderTtlQueue) {
         return BindingBuilder
                 .bind(orderTtlQueue)
-                .to(orderTtlExchange)
-                .with(QueueEnum.QUEUE_TTL_ORDER_CANCLE.getRouteKey());
+                .to(orderTtlDirect)
+                .with(QueueEnum.QUEUE_TTL_ORDER_CANCEL.getRouteKey());
     }
 
 

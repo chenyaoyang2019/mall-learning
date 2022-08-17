@@ -13,12 +13,12 @@ public enum QueueEnum {
     /**
      * 消息通知队列
      */
-    QUEUE_ORDER_CANCLE("mall.order.direct", "mall.order.cancel", "mall.order.cancel"),
+    QUEUE_ORDER_CANCEL("mall.order.direct", "mall.order.cancel", "mall.order.cancel"),
 
     /**
      * 消息通知ttl队列
      */
-    QUEUE_TTL_ORDER_CANCLE("mall.order.direct.ttl", "mall.order.cancel.ttl", "mall.order.cancel.ttl");
+    QUEUE_TTL_ORDER_CANCEL("mall.order.direct.ttl", "mall.order.cancel.ttl", "mall.order.cancel.ttl");
 
     /**
      * 交换名称
